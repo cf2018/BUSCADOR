@@ -37,13 +37,13 @@ def get_dataframe_from_search(product,categories,min_price_list,max_price_list,f
             df_final = df_final.append(df_temp)
         if ( len(df_final) == 0):
             df_final = df_temp
-        print ("df_final length is :",len(df_final))
+        print ("cantidad de articulos encontrados ... ",len(df_final))
         df_final.to_csv('df_final.csv')
 
     # dropping duplicates   
     df_final = df_final.drop_duplicates('permalink')
     # show how many found
-    print ("Total articles found : ",len(df_final), "when price*quantity > ",facturation)
+    print ("Total articulos encontrados : ",len(df_final), "cuando precio*cantidad > ",facturation)
     return df_final
 
 async def fix_sold(range_start,range_end):
