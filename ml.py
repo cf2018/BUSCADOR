@@ -28,7 +28,11 @@ def get_dataframe_from_search(product,categories,min_price_list,max_price_list,f
     df_final = pd.DataFrame.from_dict([])
     for category in categories:
         print('Buscando: ',product," en categoria : ",category['name']) # PRODUCT NAME SEARCHED
-        df_temp = display_product(product,min_price_list,max_price_list,'new',0,category['id'],facturation)
+        try:
+            df_temp = display_product(product,min_price_list,max_price_list,'new',0,category['id'],facturation)
+        except:
+            print("Error excepcion en categoria:",category['name'])
+        
         if (len(df_temp)>0):
             df_final = df_final.append(df_temp)
         if ( len(df_final) == 0):
