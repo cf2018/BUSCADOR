@@ -219,12 +219,12 @@ def return_products_from_list_pandas(total_c,product,condition,min_price,max_pri
     df = pd.DataFrame.from_dict(total_c)
     if (len(df)>0):
         df_temp = pd.DataFrame()
-        df_temp = df.loc[:, ['title', 'price','sold_quantity','address','thumbnail','permalink','shipping','seller']].sort_values('sold_quantity',ascending=False)
+        df_temp = df.loc[:, ['title', 'price','listing_type_id','sold_quantity','address','thumbnail','permalink','shipping','seller']].sort_values('sold_quantity',ascending=False)
         df_temp['city'] = df_temp['address'].apply(lambda x: x.get('city_name'))
         df_temp['seller_id'] = df_temp['seller'].apply(lambda x: x.get('id'))
         df_temp['free_shipping'] = df_temp['shipping'].apply(lambda x: x.get('free_shipping'))
         df_temp['state'] = df_temp['address'].apply(lambda x: x.get('state_name'))
-
+        #df_temp['type'] = df_temp['listing_type_id'].apply(lambda x: x.get('state_name'))
         df_temp['total'] = df['price'] * df['sold_quantity']
         df_temp['title'] = df['title'].str.lower()
         return df_temp
